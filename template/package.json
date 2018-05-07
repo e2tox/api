@@ -1,0 +1,31 @@
+{
+  "name": "{{ name }}",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "description": "{{ description }}",
+  "author": "{{ author }}",
+  "scripts": {
+    "dev": "npx ts run -w",
+    "clean": "npx ts clean",
+    "lint": "npx standard --pretty",
+    "build": "npm run clean && npm run build:ts || exit 0",
+    "build:ts": "npx ts build"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@e2/cli": "~1",
+    "@e2/web-adapter-koa": "~1",
+    "@types/node-fetch": "^1.6.9"
+  },
+  "dependencies": {
+    "@e2/web": "^1.0.0",
+    "aws-sdk": "^2.224.1",
+    "node-fetch": "^2.1.2"
+  }
+}

@@ -1,0 +1,55 @@
+# This file is a template, and might need editing before it works on your project.
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+image: microbox/node-builder:8.11.1
+
+services:
+  - docker:dind
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - node -v
+  - npm -v
+  - npx -v
+  - yarn --version
+  - yarn
+  - yarn run build
+  - cd release
+  - yarn --prod
+  - find ./node_modules/ -depth -name "*.d.ts"  -exec rm -f {} \;
+
+after_script:
+  - cd release
+  - ls -ahl
+  - du -h -d 1
+
+serverless:
+  stage: build
+  script:
+    - cd ..
+    - yarn add serverless-apigw-binary --dev
+    - yarn global add serverless
+    - cd release
+    - serverless deploy -v
+  only:
+    - master
+
+docker:
+  stage: build
+  script:
+    - docker version
+    - yarn add @e2/web-adapter-koa@1
+    - GZIP=-9 tar cvzf dist.tgz bin conf node_modules public package.json
+    - zip -0 -P $PRODUCT_KEY dist.zip dist.tgz
+    - export REPO=e201/$CI_PROJECT_NAME
+    - export TAG=`if [ "$CI_COMMIT_REF_NAME" == "master" ]; then echo "latest"; else echo $CI_COMMIT_REF_NAME ; fi`
+    - "export PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
+    - docker build -t $REPO:$CI_COMMIT_SHA -t $REPO:$TAG -t $REPO:$PACKAGE_VERSION .
+    - docker images
+    - echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+    - docker push $REPO

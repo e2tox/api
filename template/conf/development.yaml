@@ -1,0 +1,4 @@
+PORT: 11021
+PUBLIC_DIR: public
+# PUBLIC_URL: https://jsonsdk.cn
+AWS_DEFAULT_REGION: ap-southeast-1

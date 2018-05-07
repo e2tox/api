@@ -1,0 +1,14 @@
+{
+  "name": "e2-library-template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "TypeScript, AgentFramework",
+  "devDependencies": {
+    "vue-cli": "^2.8.1",
+    "prettier": "^1.12.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  }
+}

@@ -1,0 +1,9 @@
+PUBLIC_DIR: public
+
+SERVERLESS:
+  provider:
+    name: aws
+    memorySize: 128
+    runtime: nodejs6.10
+    stage: dev
+    region: ap-southeast-1

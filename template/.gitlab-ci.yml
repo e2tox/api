@@ -32,7 +32,6 @@ serverless:
   stage: build
   script:
     - cd ..
-    - yarn add serverless-apigw-binary --dev
     - yarn global add serverless
     - cd release
     - serverless deploy -v

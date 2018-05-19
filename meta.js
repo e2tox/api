@@ -9,7 +9,7 @@ module.exports = {
       "type": "string",
       "required": false,
       "message": "Project description",
-      "default": "My next great library"
+      "default": "JsonSDK API"
     },
     "author": {
       "type": "string",

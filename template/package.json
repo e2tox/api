@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.5.0"
   },
   "description": "{{ description }}",
   "author": "{{ author }}",

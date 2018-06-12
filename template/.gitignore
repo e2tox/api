@@ -1,0 +1,31 @@
+# prevent user commit any sensitive information
+**/*.pem
+**/*.crt
+**/*.key
+
+# prevent user commit ide settings
+/.idea/
+/.rpt2_cache/
+/conf/*.local.yaml
+# prevent user commit generated code
+/bin/
+/client/
+/coverage/
+/public/assets/
+!/public/assets/.gitignore
+/release/
+
+# prevent user commit external library
+/node_modules/
+
+# prevent user commit runtime logs
+/logs/
+*.log
+
+# prevent user commit javascript files
+**/*.js
+**/*.js.map
+
+#
+.DS_Store
+

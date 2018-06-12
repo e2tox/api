@@ -16,7 +16,14 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types/"
+    ],
+    "types": [
+      "jasmine",
+      "node"
+    ]
   },
   "exclude": ["node_modules"]
 }

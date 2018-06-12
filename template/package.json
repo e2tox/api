@@ -9,6 +9,14 @@
   "author": "{{ author }}",
   "scripts": {
     "dev": "npx ts run -w",
+    "debug": "npx ts run -w -D",
+    "cov": "npm run test:prepare && npm run test:coverage",
+    "test": "npm run lint && npm run test:build && npm run test:prepare && npm run test:unit",
+    "test:debug": "TARGET=debug node -r ts-node/register --inspect-brk tools/jasmine.ts || exit 0",
+    "test:build": "node_modules/.bin/tsc -p tsconfig.json --noEmit",
+    "test:prepare": "rm -rf test/minimal/data",
+    "test:unit": "node -r ts-node/register tools/jasmine.ts || exit 0",
+    "test:coverage": "node -r ts-node/register node_modules/.bin/istanbul cover --config=tools/istanbul.yaml node_modules/.bin/jasmine JASMINE_CONFIG_PATH=tools/jasmine.full.json || exit 0",
     "clean": "npx ts clean",
     "lint": "npx standard --pretty",
     "build": "npm run clean && npm run build:ts || exit 0",
@@ -19,11 +27,10 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@e2/cli": "~1",
+    "@e2/cli-service": "~1",
     "@e2/web-adapter-koa": "~1"
   },
   "dependencies": {
-    "@e2/web": "~1",
-    "aws-sdk": "~2"
+    "@e2/web": "~1"
   }
 }

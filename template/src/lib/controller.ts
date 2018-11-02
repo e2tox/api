@@ -1,12 +1,12 @@
-import { WebotApplicationSettings } from '../conf/settings';
+import { MyApplicationSettings } from '../conf/settings';
 import { WebController } from '@e2/web';
-import { WebotContext } from './context';
+import { MyContext } from './context';
 import { middleware, NextFunction } from '@e2/web';
 
-export class WebotController extends WebController<WebotApplicationSettings> {
+export class WebotController extends WebController<MyApplicationSettings> {
 
   @middleware()
-  createClient(ctx: WebotContext, next: NextFunction) {
+  createClient(ctx: MyContext, next: NextFunction) {
     return next();
   }
 }

@@ -1,7 +1,7 @@
-import { WebotApplicationSettings } from '../conf/settings';
+import { MyApplicationSettings } from '../conf/settings';
 import { WebContext } from '@e2/web';
 
 
-export interface WebotContext extends WebContext<WebotApplicationSettings> {
+export interface MyContext extends WebContext<MyApplicationSettings> {
 
 }

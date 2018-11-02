@@ -1,5 +1,5 @@
 import { Resolvable } from '@e2/web';
-import { WebotApplicationSettings } from '../conf/settings';
+import { MyApplicationSettings } from '../conf/settings';
 
 
-export class WebotService extends Resolvable<WebotApplicationSettings> {}
+export class MyService extends Resolvable<MyApplicationSettings> {}

@@ -1,22 +1,17 @@
 import { controller, method } from '@e2/web';
-import { WebotController } from '../controller';
-import { WebotContext } from '../context';
+import { MyController } from '../controller';
+import { MyContext } from '../context';
 
 @controller('/api')
-export class EchoController extends WebotController {
+export class EchoController extends MyController {
   
-  /**
-   * Demo api endpoint
-   *
-   * @param {WebotContext} ctx
-   * @returns {Promise<any>}
-   */
   @method('GET', '/echo')
   @method('POST', '/echo')
-  async echo(ctx: WebotContext): Promise<any> {
-    ctx.cookies.set('name', 'ling', { signed: true, domain: 'jsonsdk.com' });
-    ctx.cookies.set('level', '14', { domain: 'jsonsdk.com' });
-
+  async echo(ctx: MyContext){
+    let payload;
+    if (ctx.method === 'POST') {
+      payload = await ctx.req.json();
+    }
     return {
       cookies: ctx.req.cookies,
       signedCookies: ctx.req.signedCookies,
@@ -29,7 +24,8 @@ export class EchoController extends WebotController {
       publicUrl: ctx.req.publicUrl,
       href: ctx.req.href,
       ip: ctx.req.ip,
-      host: ctx.req.hostname
+      host: ctx.req.hostname,
+      payload
     };
   }
 }

@@ -1,15 +1,8 @@
 import { WebServerContext, HttpListener } from '@e2/web';
-import { WebotApplication } from '../lib/application';
-import { WebotApplicationSettings } from '../conf/settings';
 import { KoaServer } from '@e2/web-adapter-koa';
-
-// Create a Koa server
-//    using WebotApplication and WebotApplicationSettings
-//    listen with HttpListener
+import { MyApplication } from '../lib/application';
+import { MyApplicationSettings } from '../conf/settings';
 
 WebServerContext.create(KoaServer)
-  .with(WebotApplication, WebotApplicationSettings)
+  .with(MyApplication, MyApplicationSettings)
   .listen(HttpListener);
-
-
-

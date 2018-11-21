@@ -11,7 +11,6 @@ export class MyApplication extends WebApplication<MyApplicationSettings> {
       this.warn('|                                                             |');
       this.warn('+=============================================================+');
     }
-
     this.addControllers(Controllers);
   }
 }
